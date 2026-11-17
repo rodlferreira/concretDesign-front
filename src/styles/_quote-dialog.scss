@@ -1,0 +1,166 @@
+.quote-page {
+  position: relative;
+  isolation: isolate;
+  padding: 36px var(--gutter) 70px;
+  min-height: calc(100dvh - var(--site-header-height));
+  background: var(--bg);
+  overflow: hidden;
+}
+.quote-dialog-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+.quote-dialog-backdrop img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1.5s ease;
+}
+.quote-dialog-backdrop img.is-active {
+  opacity: 0.07;
+}
+.quote-page-back {
+  position: relative;
+  font-size: 12px;
+  margin-bottom: 38px;
+}
+.quote-dialog-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1fr);
+  gap: clamp(40px, 7vw, 120px);
+  max-width: 1400px;
+  margin: auto;
+  align-items: center;
+}
+.quote-dialog-inspiration {
+  position: relative;
+  min-width: 0;
+  padding: 20px 0;
+}
+.quote-dialog-symbol {
+  width: 68px;
+  height: 68px;
+  margin-bottom: 28px;
+}
+.quote-dialog-inspiration .eyebrow {
+  font-size: 10px;
+}
+.quote-mini-carousel {
+  overflow: hidden;
+  margin-top: 26px;
+  border: 1px solid var(--line);
+}
+.quote-mini-track {
+  display: flex;
+  transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.quote-mini-track img {
+  flex: 0 0 100%;
+  width: 100%;
+  height: clamp(220px, 24vw, 350px);
+  object-fit: cover;
+}
+.quote-mini-controls {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  font-size: 11px;
+  margin-top: 16px;
+}
+.quote-mini-controls span {
+  flex: 1;
+}
+.quote-mini-controls button,
+.quote-next {
+  position: absolute;
+  right: 0;
+  bottom: 59px;
+}
+.quote-dialog-demo {
+  font-size: 10px;
+  line-height: 1.6;
+  margin-top: 22px;
+  min-height: 32px;
+}
+.quote-dialog-form {
+  padding: 36px 0 36px clamp(24px, 3vw, 48px);
+  border-left: 1px solid var(--line);
+}
+.quote-dialog-form h1 {
+  font-size: clamp(30px, 3vw, 46px);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.035em;
+  margin: 16px 0;
+  max-width: 510px;
+}
+.quote-dialog-form > p:not(.eyebrow) {
+  font-size: 14px;
+  line-height: 1.65;
+  margin-bottom: 30px;
+  max-width: 400px;
+}
+.quote-page .quote-form label {
+  font-size: 12px;
+}
+.quote-page .quote-form input:not([type="checkbox"]),
+.quote-page .quote-form textarea,
+.quote-page .quote-form select {
+  background: var(--bg);
+  color: var(--text);
+  border-color: var(--line);
+  min-height: 46px;
+}
+.quote-page .quote-form .required-note {
+  color: var(--muted);
+}
+.quote-page .form-status.sent {
+  color: var(--text);
+}
+:root[data-theme="light"] .quote-page .form-status.error,
+:root[data-theme="light"] .quote-page .form-status.rate {
+  color: #9b3022;
+}
+@media (max-width: 760px) {
+  .quote-page {
+    padding-top: 24px;
+  }
+  .quote-page-back {
+    margin-bottom: 12px;
+  }
+  .quote-dialog-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .quote-dialog-form {
+    order: -1;
+    padding: 24px 0;
+    border-left: 0;
+    width: 100%;
+  }
+  .quote-dialog-inspiration {
+    width: 100%;
+    border-top: 1px solid var(--line);
+    padding-top: 28px;
+  }
+  .quote-dialog-symbol {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 12px;
+  }
+  .quote-mini-track img {
+    height: 200px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .quote-mini-track,
+  .quote-dialog-backdrop img {
+    transition: none;
+  }
+}

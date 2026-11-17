@@ -1,10 +1,22 @@
+import { ProjectGallery } from "./components/ProjectGallery";
+import { QuotePage } from "./components/QuotePage";
 import { useEffect, useRef, useState } from "react";
-import { ArrowRight, ChevronRight, ArrowLeft } from "lucide-react";
+import {
+  ArrowRight,
+  ChevronRight,
+  ArrowLeft,
+  MoveHorizontal,
+} from "lucide-react";
 import { Header } from "./components/Header";
 import { ContrastToggle } from "./components/ContrastToggle";
 import { Icon } from "./components/Icon";
 import { Contact } from "./components/Contact";
 import { Portfolio, ProjectMeta } from "./components/Portfolio";
+import { ProjectCarousel } from "./components/ProjectCarousel";
+import { Suppliers } from "./components/Suppliers";
+import { CoverageMap } from "./components/CoverageMap";
+import { AboutBrand } from "./components/AboutBrand";
+import { FloatingWhatsApp } from "./components/FloatingWhatsApp";
 import { useI18n, type Key } from "./i18n/I18n";
 import { projects, services } from "./lib/projects";
 import { useReveal } from "./hooks/useReveal";
@@ -25,7 +37,7 @@ function Home() {
           </h1>
           <p className="hero-description">{t("hero.text")}</p>
           <div className="hero-buttons">
-            <a className="button" href="#contactos">
+            <a className="button" href="/orcamento">
               {t("quote")}
               <ArrowRight size={19} />
             </a>
@@ -42,65 +54,22 @@ function Home() {
           ↓
         </a>
       </section>
-      <section className="services section-pad" id="servicos">
-        <h2>
-          {t("services.title")}
-          <span className="small-rule" />
-        </h2>
+      <section
+        className="services section-pad"
+        id="servicos"
+        aria-label={t("nav.services")}
+      >
         <div className="service-list">
           {services.map((service) => (
             <a href={`/#contactos`} key={service.id} className="service">
               <Icon name={service.icon} />
-              <h3>{t(`service.${service.id}`)}</h3>
+              <h2>{t(`service.${service.id}`)}</h2>
               <p>{t(`service.${service.id}.text`)}</p>
             </a>
           ))}
         </div>
       </section>
-      <section className="featured" aria-label={t("project.featured")}>
-        {projects.slice(0, 4).map((project, index) => (
-          <article
-            key={project.id}
-            className={`featured-row ${index % 2 ? "reverse" : ""}`}
-          >
-            <a className="featured-image" href={`/projects/${project.id}`}>
-              <img
-                src={`/images/${project.image}.webp`}
-                width="800"
-                height="320"
-                alt={t(`project.${project.id}` as Key)}
-                loading="lazy"
-              />
-            </a>
-            <div className="featured-copy">
-              <p className="eyebrow">{t("project.featured")}</p>
-              <h2>{t(`project.${project.id}` as Key)}</h2>
-              <ProjectMeta project={project} />
-              <p>{t(`project.${project.id}.text` as Key)}</p>
-              <a className="text-link" href={`/projects/${project.id}`}>
-                {t("project.view")}
-                <ArrowRight size={23} />
-              </a>
-            </div>
-          </article>
-        ))}
-      </section>
-      <Portfolio />
-      <section className="materials section-pad">
-        <div>
-          <h2>{t("materials.title")}</h2>
-          <p>{t("materials.text")}</p>
-        </div>
-        <div className="partners">
-          <h3>{t("materials.partners")}</h3>
-          <div className="partner-marks" aria-hidden="true">
-            {["grid", "waves", "lines", "layers", "trowel"].map((name) => (
-              <Icon key={name} name={name} />
-            ))}
-          </div>
-          <p className="muted">{t("materials.pending")}</p>
-        </div>
-      </section>
+      <ProjectCarousel />
       <section className="process section-pad" id="processo">
         <div>
           <h2>{t("process.title")}</h2>
@@ -123,28 +92,9 @@ function Home() {
           )}
         </ol>
       </section>
-      <section className="coverage section-pad">
-        <svg className="portugal" viewBox="0 0 100 150" aria-hidden="true">
-          <path d="m45 7 14 6 9-2 3 11 10 2-4 14-8 9 1 10-12 8 4 13-11 10-2 14-10 11-1 11-9 9 1 11-22-5 6-14 4-18 4-12-2-12 7-15-1-14 6-13-1-13 7-7z" />
-          <path
-            className="map-lines"
-            d="m32 32 38 9m-40 9 30 15m-38 9 31 9m-35 15 30 8m-31 16 22 9M45 16 33 140"
-          />
-        </svg>
-        <div>
-          <h2>{t("coverage.title")}</h2>
-          <p>{t("coverage.text")}</p>
-        </div>
-        <div className="regions">
-          <h3>{t("coverage.regions")}</h3>
-          <p>{t("coverage.list")}</p>
-        </div>
-      </section>
-      <section className="about section-pad" id="sobre">
-        <p className="eyebrow">{t("nav.about")}</p>
-        <h2>{t("about.title")}</h2>
-        <p>{t("about.text")}</p>
-      </section>
+      <CoverageMap />
+      <Suppliers />
+      <AboutBrand />
       <Contact />
     </>
   );
@@ -231,7 +181,13 @@ function Detail() {
               className="comparison-divider"
               style={{ left: `${position}%` }}
             >
-              <span>↔</span>
+              <span>
+                <MoveHorizontal
+                  size={16}
+                  strokeWidth={1.5}
+                  aria-hidden="true"
+                />
+              </span>
             </div>
             <span className="before-label">{t("before")}</span>
             <span className="after-label">{t("after")}</span>
@@ -246,7 +202,7 @@ function Detail() {
           </div>
           <p className="muted">{t("comparison.note")}</p>
         </div>
-        <a className="button" href="/#contactos">
+        <a className="button" href="/orcamento">
           {t("detail.request")}
           <ArrowRight size={18} />
         </a>
@@ -277,17 +233,19 @@ export default function App() {
   const path = window.location.pathname;
   return (
     <>
-      <Header />
+      <Header overlay={path === "/"} />
       <main id="conteudo" tabIndex={-1}>
         {path === "/" ? (
           <Home />
         ) : path === "/portfolio" ? (
           <>
-            <Portfolio full />
+            <ProjectGallery />
             <Contact />
           </>
         ) : path.startsWith("/projects/") ? (
           <Detail />
+        ) : path === "/orcamento" ? (
+          <QuotePage />
         ) : path === "/privacy" ? (
           <Privacy />
         ) : (
@@ -306,6 +264,7 @@ export default function App() {
           <a href="/privacy">{t("privacy")}</a>
         </div>
       </footer>
+      <FloatingWhatsApp />
     </>
   );
 }

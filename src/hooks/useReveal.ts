@@ -22,7 +22,7 @@ export function useReveal() {
         // Feedback and form instructions must never wait for a scroll animation.
         if (
           targets.has(element) ||
-          element.closest("form, [aria-live], [role=status]")
+          element.closest("form, [aria-live], [role=status], .project-carousel")
         )
           continue;
         targets.add(element);

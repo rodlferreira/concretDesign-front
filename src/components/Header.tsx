@@ -3,7 +3,7 @@ import { MoonIcon } from "@phosphor-icons/react/dist/csr/Moon";
 import { useEffect, useRef, useState } from "react";
 import { Menu, X, ChevronDown, Search } from "lucide-react";
 import { languages, persist, stored, useI18n } from "../i18n/I18n";
-export function Header() {
+export function Header({ overlay = false }: { overlay?: boolean }) {
   const { locale, t, change, loading } = useI18n();
   const [menu, setMenu] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
@@ -57,7 +57,7 @@ export function Header() {
       <a className="skip" href="#conteudo">
         {t("skip")}
       </a>
-      <header className="header">
+      <header className={overlay ? "header header--overlay" : "header"}>
         <a className="brand" href="/" aria-label="ConcretDesign">
           <img
             className="brand-symbol"
@@ -171,7 +171,7 @@ export function Header() {
               </div>
             )}
           </div>
-          <a className="button header-quote" href="/#contactos">
+          <a className="button header-quote" href="/orcamento">
             {t("quote")}
           </a>
           <button

@@ -1,0 +1,9 @@
+Portugal mainland district geometry
+Source: geoBoundaries gbOpen PRT ADM1, source authority DG Territory (2016).
+Pinned source: https://github.com/wmgeolab/geoBoundaries/raw/9469f09/releaseData/gbOpen/PRT/ADM1/geoBoundaries-PRT-ADM1_simplified.geojson
+Metadata: https://www.geoboundaries.org/api/current/gbOpen/PRT/ADM1/
+License: Open Data Commons Open Database License 1.0
+License URL: https://opendatacommons.org/licenses/odbl/1-0/
+Derived dataset: portugal-mainland.json (same directory).
+Modifications: excluded PT-20 and PT-30; simplified rings; projected to SVG coordinates.
+This is an illustrative map, not a cadastral or legal boundary representation.

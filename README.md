@@ -52,7 +52,7 @@ Contactos reais fornecidos pelo utilizador em `src/lib/config.ts`:
 - Alexandre Prado: +351 963 444 880 · alexandreprado@concretdesign.pt
 - Geral: geral@concretdesign.pt
 
-O QR é gerado localmente para `/portfolio` no domínio que está a servir o site. Para impressão da revista, gerar um QR definitivo apenas depois de confirmar o domínio público. A revista PDF não foi fornecida: a interface informa a sua indisponibilidade. Configurar `VITE_BROCHURE_URL` com a URL HTTPS do PDF para ativar o download. Não foram criados documentos de portefólio que pudessem passar por obras reais.
+O QR visível nos contactos abre o WhatsApp da Emilly (`https://wa.me/351963445555`) ao clicar ou ler com a câmara. A arte do ChatGPT foi verificada, mas não era descodificável; por escolha do utilizador foi reconstruído um QR real em SVG, com cobre/cinza, fundo escuro e símbolo da marca. O ficheiro está em `public/images/whatsapp-emilly-qr.svg`; regenerar com `node scripts/build-whatsapp-qr.mjs`. A matriz usa correção H e margem de quatro módulos. Leitura validada com ZXing a 168, 336, 488 e 976 px. O destino do QR é fixo na Emilly, independente da configuração do botão flutuante. A revista PDF não foi fornecida: a interface informa a sua indisponibilidade. Configurar `VITE_BROCHURE_URL` com a URL HTTPS do PDF para ativar o download. Não foram criados documentos de portefólio que pudessem passar por obras reais.
 
 ## Produção
 
@@ -84,3 +84,50 @@ A referência foi recuperada das imagens originais incorporadas no ficheiro `Con
 O cabeçalho combina o símbolo SVG com nome/subtítulo em texto HTML e fontes locais. Os glifos comuns do subtítulo reutilizam os contornos da linha principal, cuja resolução de origem é maior. As três letras adicionais são traçadas do subtítulo original. São subconjuntos para as palavras da marca, não uma família tipográfica completa nem o ficheiro da fonte original. Para editar os SVG noutros programas pode ser necessário instalar os subconjuntos; os navegadores usam as fontes WOFF2 incorporadas.
 
 A vetorização suaviza contornos de uma origem raster, pelo que não é o desenho vetorial oficial nem uma promessa de equivalência pixel a pixel. A geometria e as texturas são derivadas da arte fornecida, em vez de recriadas por uma nova interpretação.
+
+## Cabeçalho sobre a imagem de abertura
+
+Na homepage, a imagem estende-se até ao topo, por trás do cabeçalho sticky. O header usa um fundo fumê translúcido com desfocagem; a altura do cabeçalho é compensada dentro da hero para preservar a posição dos textos, botões e início da secção seguinte. A largura da imagem mantém-se. As outras páginas conservam o cabeçalho normal. A compensação acompanha as alturas de desktop/tablet/telemóvel e é removida na impressão.
+
+## Carrossel e galeria de projetos
+
+Os antigos blocos alternados da homepage e os três cartões de destaque foram reunidos num carrossel de sete projetos. A faixa ocupa toda a largura disponível, com a imagem central em destaque e partes das imagens vizinhas nos extremos. O ciclo usa clones nas pontas para regressar ao primeiro projeto sem salto visível. A imagem central aproxima-se suavemente durante 6,5 segundos antes da passagem seguinte.
+
+O título e o resumo são o próprio elemento de abertura da galeria, sem um botão de chamada adicional. A galeria usa um `dialog` nativo com foco contido, fecho por Escape e reposição do foco no elemento de origem. Inclui categorias de acabamento, tipologia, pesquisa por projeto/localidade sem distinguir acentos, contagem e limpeza dos filtros. A grelha usa as imagens já fornecidas; não foram inventados novos projetos ou fotografias. As imagens e localizações mantêm a indicação de conceitos ilustrativos.
+
+A reprodução para quando a faixa sai do ecrã, a aba fica oculta ou a galeria abre. O foco de teclado e a navegação manual pausam a apresentação; o botão de reprodução permite retomá-la. Há navegação por setas, indicadores e gesto horizontal no toque. Com movimento reduzido, não há zoom nem avanço automático. Em ecrãs pequenos, os filtros laterais passam a seletores compactos acima da grelha. A paleta dos temas permanece a mesma.
+
+Componentes: `ProjectCarousel.tsx`, `ProjectGallery.tsx`; estilos em `_project-gallery.scss`. As onze novas mensagens de interface estão presentes nos 48 catálogos de idiomas.
+
+## Fornecedores
+
+A secção `Fornecedores` fica imediatamente antes de `Sobre nós`. Substitui a antiga faixa `Materiais e marcas` e os seus ícones genéricos. Os fornecedores confirmados devem ser incluídos em `src/lib/suppliers.ts`, com nome e, opcionalmente, site e logótipo. Por indicação do utilizador, a lista contém cinco fornecedores fictícios para demonstração: Ateliê Mineral, Cal & Matéria, Strato Studio, Terra Textura e Forma Mineral. Têm `isDemo: true`, não possuem links externos e a secção identifica-os como fictícios. Substituir pelos fornecedores confirmados antes da publicação.
+
+## Mapa de Portugal Continental
+
+A antiga silhueta pequena foi substituída por um SVG local maior com os 18 distritos continentais. A seleção de um pin ou de uma região realça os distritos associados e apresenta os projetos correspondentes. As regiões atuais são Norte (Porto/Braga), Lisboa e Vale do Tejo (Lisboa/Cascais) e Algarve, derivadas dos projetos ilustrativos existentes. Por indicação do utilizador, mantêm-se provisórias até haver informação adicional. Os pins são agregações regionais aproximadas, não coordenadas de moradas de obras. A nota de conteúdo ilustrativo permanece visível.
+
+Os dados de regiões, cidades, distritos e pontos estão em `src/lib/coverage.ts`. A geometria está em `src/data/portugal-mainland.json`; cópia pública e atribuição em `public/data/`. Madeira e Açores são excluídos explicitamente por ISO PT-30/PT-20 no processamento. Não há pedidos a serviços de mapas, localização do visitante, cookies externos ou chaves de API.
+
+Fonte cartográfica: geoBoundaries gbOpen PRT ADM1, com origem DG Territory (2016), sob Open Data Commons Open Database License 1.0. Atribuição também visível na interface e em `public/data/portugal-map-attribution.txt`. A geometria foi simplificada e projetada para coordenadas SVG; não constitui uma representação cadastral ou de limites legais. `scripts/build-portugal-map.py` reconstrói os caminhos a partir do ficheiro GeoJSON da fonte fixada no próprio script. O mapa é ilustrativo e não implica que existam obras em todos os concelhos de uma região/distrito destacado.
+
+## Sobre nós — apresentação da marca
+
+A secção usa uma composição editorial de duas colunas: painel com o símbolo vetorial da ConcretDesign ampliado e assinatura em texto HTML real, ao lado da descrição da marca e dos seus acabamentos. O painel valoriza os detalhes cobre/cinza existentes com iluminação e sombra CSS discretas; não altera os contornos do SVG nem a marca do cabeçalho. O ficheiro vetorial mantém a nitidez em qualquer escala. O conteúdo descritivo usa os textos e traduções existentes, sem inventar historial, anos de experiência ou certificações. Em telemóvel, logo e texto ficam empilhados. Componentes e estilos: `AboutBrand.tsx` e `_about-brand.scss`.
+
+O botão flutuante de WhatsApp e o contacto de WhatsApp abrem diretamente o número da Emilly (+351 963 445 555). Para substituir pelo futuro número da empresa, definir `VITE_WHATSAPP_NUMBER` no ambiente do frontend, apenas com dígitos e indicativo internacional, e recompilar. Não há menu de seleção de pessoas.
+
+Os links “Pedir orçamento” navegam para `/orcamento`, uma página própria integrada no site, com formulário e carrossel compacto. Não há popup. A página mantém a integração com a API, o tema e o idioma selecionados. O carrossel tem pausa, navegação manual e respeita movimento reduzido.
+
+O portefólio `/portfolio` é uma página de catálogo com pesquisa, categorias por acabamento, filtro de tipologia e grelha de projetos. As imagens do carrossel principal e do orçamento abrem esta página; `?project=ID` destaca a seleção inicial. Os filtros adaptam-se ao telemóvel. As imagens da grelha abrem o detalhe do projeto.
+
+O PDF ilustrativo está em `public/documents/concretdesign-portfolio.pdf` e é o documento predefinido para download na galeria e nos contactos. Para regenerar, executar `scripts/build-portfolio-pdf.py` com Python, ReportLab e Pillow. `VITE_BROCHURE_URL` permite substituir pelo PDF oficial HTTPS. O documento atual está em português e identifica todas as imagens como propostas ilustrativas.
+
+## Publicação de teste no Vercel — 16/11/2026
+
+- Site: https://concretdesign.vercel.app
+- API: https://concretdesign-api.vercel.app/api/health
+- A versão publicada inclui as alterações locais, sem depender de um push ao GitHub.
+- `vercel.json` encaminha `/api/*` para a API e serve as rotas React diretamente.
+- Para publicar novamente, executar `npx vercel --prod` nesta pasta, depois do build e das verificações.
+- O projeto está ligado a `rodlferreira/concretDesign-front`; um push futuro para a branch de produção pode iniciar outro deploy. Incluir os ficheiros de configuração do Vercel no próximo commit.

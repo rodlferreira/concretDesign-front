@@ -1,28 +1,33 @@
-import { useEffect, useState } from "react";
-import QRCode from "qrcode";
 import { ArrowRight, FileDown, Mail, Phone, MessageCircle } from "lucide-react";
 import { useI18n } from "../i18n/I18n";
-import { contacts, generalEmail, brochureUrl } from "../lib/config";
-import { QuoteForm } from "./QuoteForm";
+import {
+  contacts,
+  generalEmail,
+  brochureUrl,
+  whatsappUrl,
+} from "../lib/config";
+
 export function Contact() {
   const { t } = useI18n();
-  const [qr, setQr] = useState("");
-  useEffect(() => {
-    void QRCode.toDataURL(`${window.location.origin}/portfolio`, {
-      width: 144,
-      margin: 2,
-      errorCorrectionLevel: "M",
-    }).then(setQr);
-  }, []);
   return (
     <section className="contact section-pad" id="contactos">
       <div className="contact-portfolio">
         <div className="brochure-heading">
-          {qr && (
-            <a href="/portfolio" aria-label={t("brochure.title")}>
-              <img src={qr} width="104" height="104" alt="QR — ConcretDesign" />
-            </a>
-          )}
+          <a
+            className="contact-whatsapp-qr"
+            href="https://wa.me/351963445555"
+            aria-label={`${t("contact.whatsapp.open")} — Emilly Prado`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              src="/images/whatsapp-emilly-qr.svg"
+              width="224"
+              height="262"
+              alt="QR — WhatsApp da Emilly Prado, +351 963 445 555"
+            />
+            <span>WhatsApp · Emilly Prado</span>
+          </a>
           <div>
             <p className="eyebrow">{t("nav.portfolio")}</p>
             <h2>{t("brochure.title")}</h2>
@@ -55,7 +60,10 @@ export function Contact() {
         <p className="eyebrow">{t("quote")}</p>
         <h2>{t("contact.title")}</h2>
         <p>{t("contact.text")}</p>
-        <QuoteForm />
+        <a className="button" href="/orcamento">
+          {t("quote")}
+          <ArrowRight size={18} />
+        </a>
       </div>
       <aside className="contact-people">
         <MessageCircle className="whatsapp-icon" size={35} strokeWidth={1.4} />
@@ -72,17 +80,17 @@ export function Contact() {
               <Mail size={14} />
               {person.email}
             </a>
-            <a
-              className="button outline whatsapp-button"
-              href={`https://wa.me/${person.digits}`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {t("contact.whatsapp.open")}
-              <ArrowRight size={16} />
-            </a>
           </address>
         ))}
+        <a
+          className="button outline whatsapp-button"
+          href={whatsappUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {t("contact.whatsapp.open")}
+          <ArrowRight size={16} />
+        </a>
       </aside>
     </section>
   );

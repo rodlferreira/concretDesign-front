@@ -6,7 +6,9 @@ function httpsUrl(value: string | undefined) {
     return undefined;
   }
 }
-export const brochureUrl = httpsUrl(import.meta.env.VITE_BROCHURE_URL);
+export const brochureUrl =
+  httpsUrl(import.meta.env.VITE_BROCHURE_URL) ||
+  "/documents/concretdesign-portfolio.pdf";
 export const contacts = [
   {
     name: "Emilly Prado",
@@ -22,3 +24,11 @@ export const contacts = [
   },
 ];
 export const generalEmail = "geral@concretdesign.pt";
+
+// Until the company number is available, route WhatsApp to Emilly.
+const configuredWhatsAppNumber = import.meta.env.VITE_WHATSAPP_NUMBER?.trim();
+export const whatsappNumber =
+  configuredWhatsAppNumber && /^[1-9]\d{7,14}$/.test(configuredWhatsAppNumber)
+    ? configuredWhatsAppNumber
+    : contacts[0].digits;
+export const whatsappUrl = `https://wa.me/${whatsappNumber}`;
