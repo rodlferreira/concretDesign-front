@@ -1,4 +1,9 @@
 @use "sass:color";
+@use "project-gallery";
+@use "coverage-map";
+@use "about-brand";
+@use "floating-whatsapp";
+@use "quote-dialog";
 @font-face {
   font-family: "ConcretReferenceName";
   src: url("/fonts/concret-reference-name.woff2") format("woff2");
@@ -27,6 +32,7 @@ $copper: #b88865;
   --header: #181716;
   --shadow: 0 16px 50px #0005;
   --gutter: clamp(22px, 4.3vw, 76px);
+  --site-header-height: 82px;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -237,12 +243,24 @@ main:focus {
   align-items: center;
   gap: 25px;
   padding: 15px var(--gutter);
-  min-height: 82px;
+  min-height: var(--site-header-height);
   background: #181716f5;
   color: #f7f3f0;
   border-bottom: 1px solid #ffffff0c;
   backdrop-filter: blur(12px);
 }
+// Overlay only the homepage hero; keep its text and the following section in place.
+.header--overlay {
+  margin-bottom: calc(-1 * var(--site-header-height));
+  background: rgba(24, 23, 22, 0.68);
+  -webkit-backdrop-filter: blur(8px) saturate(85%);
+  backdrop-filter: blur(8px) saturate(85%);
+}
+.header--overlay + main .hero {
+  padding-top: var(--site-header-height);
+  min-height: calc(var(--hero-height) + var(--site-header-height));
+}
+
 .brand {
   --brand-width: 245px;
   flex-shrink: 0;
@@ -426,7 +444,8 @@ main:focus {
   isolation: isolate;
   background: #24201b;
   color: #f7f3f0;
-  min-height: clamp(420px, 34vw, 570px);
+  --hero-height: clamp(420px, 34vw, 570px);
+  min-height: var(--hero-height);
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -504,52 +523,48 @@ main:focus {
   font-size: 22px;
 }
 .services {
-  display: grid;
-  grid-template-columns: 19% 1fr;
-  gap: 25px;
-  align-items: center;
+  display: block;
+  padding-block: 20px;
   border-bottom: 1px solid var(--line);
   background: var(--paper);
-  min-height: 173px;
-}
-.services h2 {
-  font-size: clamp(24px, 2.3vw, 33px);
-  max-width: 180px;
-}
-.small-rule {
-  display: block;
-  width: 46px;
-  height: 2px;
-  background: var(--accent);
-  margin-top: 20px;
+  min-height: 120px;
 }
 .service-list {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  max-width: 1200px;
+  margin-inline: auto;
 }
 .service {
   text-align: center;
   border-left: 1px solid var(--line);
-  padding: 0 18px;
+  padding: 0 16px;
+}
+.service:first-child {
+  border-left: 0;
 }
 .service > svg {
-  width: 36px;
-  height: 36px;
+  width: 26px;
+  height: 26px;
+  stroke-width: 1.15;
   color: var(--accent);
-  margin: 0 auto 10px;
+  margin: 0 auto 8px;
 }
-.service h3 {
-  font-size: 14px;
-  margin-bottom: 8px;
-  line-height: 1.1;
+.service h2 {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  margin-bottom: 6px;
+  line-height: 1.25;
 }
 .service p {
   color: var(--muted);
-  font-size: 11px;
-  line-height: 1.3;
-  margin: 0;
+  font-size: 10px;
+  line-height: 1.4;
+  max-width: 210px;
+  margin: 0 auto;
 }
-.service:hover h3 {
+.service:hover h2 {
   color: var(--accent);
 }
 .featured-row {
@@ -697,40 +712,27 @@ main:focus {
   grid-column: 2;
   font-size: 10px;
 }
-.materials {
+.suppliers {
   display: grid;
   grid-template-columns: 27% 1fr;
   gap: 45px;
   background: var(--paper);
   border-bottom: 1px solid var(--line);
 }
-.materials h2 {
+.suppliers h2 {
   font-size: 26px;
   margin-bottom: 8px;
 }
-.materials p {
+.suppliers p {
   font-size: 12px;
   margin-bottom: 0;
   line-height: 1.35;
 }
-.partners {
+.suppliers-content {
   border-left: 1px solid var(--line);
   padding-left: 45px;
 }
-.partners h3 {
-  font-size: 13px;
-}
-.partner-marks {
-  display: flex;
-  justify-content: space-between;
-  margin: 12px 0 7px;
-  color: var(--muted);
-}
-.partner-marks svg {
-  width: 37px;
-  height: 37px;
-}
-.partners .muted {
+.suppliers-content .muted {
   font-size: 10px;
 }
 .process {
@@ -1194,7 +1196,11 @@ main:focus {
   height: 34px;
   display: grid;
   place-items: center;
-  font-size: 20px;
+  line-height: 1;
+}
+.comparison-divider span svg {
+  display: block;
+  flex-shrink: 0;
 }
 .comparison-image input {
   position: absolute;
@@ -1361,7 +1367,7 @@ main:focus {
   .service {
     padding-inline: 10px;
   }
-  .service h3 {
+  .service h2 {
     font-size: 12px;
   }
   .service p {
@@ -1418,22 +1424,15 @@ main:focus {
   .menu-toggle {
     display: flex;
   }
-  .header {
-    min-height: 72px;
+  :root {
+    --site-header-height: 75px;
   }
   .hero {
-    min-height: 410px;
-  }
-  .services {
-    grid-template-columns: 17% 1fr;
-    gap: 12px;
+    --hero-height: 410px;
   }
   .service > svg {
-    width: 29px;
-    height: 29px;
-  }
-  .services h2 {
-    font-size: 25px;
+    width: 24px;
+    height: 24px;
   }
   .process {
     grid-template-columns: 18% 1fr;
@@ -1509,12 +1508,14 @@ main:focus {
   }
 }
 @media (max-width: 700px) {
+  :root {
+    --site-header-height: 70px;
+  }
   html {
     scroll-padding-top: 85px;
   }
   .header {
     padding: 12px 20px;
-    min-height: 70px;
     gap: 5px;
   }
   .brand {
@@ -1551,7 +1552,7 @@ main:focus {
     grid-template-columns: 1fr 1fr;
   }
   .hero {
-    min-height: 560px;
+    --hero-height: 560px;
     align-items: flex-end;
   }
   .hero-image {
@@ -1596,22 +1597,11 @@ main:focus {
     display: none;
   }
   .services {
-    display: block;
-    padding-top: 28px;
-    padding-bottom: 28px;
-  }
-  .services h2 {
-    max-width: none;
-    font-size: 27px;
-    margin-bottom: 25px;
-  }
-  .small-rule {
-    margin-top: 12px;
-    width: 35px;
+    padding-block: 18px;
   }
   .service-list {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 25px 0;
+    gap: 18px 0;
   }
   .service {
     padding: 0 14px;
@@ -1626,16 +1616,16 @@ main:focus {
     max-width: 230px;
     justify-self: center;
   }
-  .service h3 {
-    font-size: 14px;
-  }
-  .service p {
+  .service h2 {
     font-size: 12px;
   }
+  .service p {
+    font-size: 10px;
+  }
   .service > svg {
-    width: 34px;
-    height: 34px;
-    margin-bottom: 10px;
+    width: 24px;
+    height: 24px;
+    margin-bottom: 8px;
   }
   .featured-row,
   .featured-row.reverse {
@@ -1697,24 +1687,21 @@ main:focus {
   .portfolio .demo-note {
     margin-top: 20px;
   }
-  .materials {
+  .suppliers {
     grid-template-columns: 1fr;
     gap: 24px;
     padding-block: 28px;
   }
-  .materials h2 {
+  .suppliers h2 {
     font-size: 26px;
   }
-  .materials p {
+  .suppliers p {
     font-size: 13px;
   }
-  .partners {
+  .suppliers-content {
     border-left: 0;
     border-top: 1px solid var(--line);
     padding: 22px 0 0;
-  }
-  .partner-marks {
-    justify-content: space-around;
   }
   .process {
     grid-template-columns: 1fr;
@@ -1960,6 +1947,10 @@ main:focus {
   .featured-row {
     break-inside: avoid;
   }
+  .header--overlay + main .hero {
+    padding-top: 0;
+    min-height: var(--hero-height);
+  }
   .hero {
     print-color-adjust: exact;
   }
@@ -2058,7 +2049,7 @@ body,
 .services,
 .featured-row,
 .portfolio,
-.materials,
+.suppliers,
 .coverage,
 .about {
   transition:
@@ -2088,4 +2079,176 @@ body,
 :root[data-theme="light"][data-contrast="true"] .muted,
 :root[data-theme="light"][data-contrast="true"] .demo-note {
   color: var(--muted);
+}
+
+.suppliers-content {
+  display: flex;
+  align-items: center;
+  min-height: 56px;
+}
+.suppliers-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  gap: 24px 36px;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.suppliers-list li {
+  max-width: 180px;
+}
+.suppliers-list img {
+  max-width: 160px;
+  height: 56px;
+  object-fit: contain;
+}
+.suppliers-list a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+.suppliers-list span {
+  font-size: 14px;
+  color: var(--text);
+}
+
+.suppliers-list {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 18px;
+}
+.suppliers-list li {
+  min-width: 0;
+  max-width: none;
+  text-align: center;
+}
+.supplier-mark {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.suppliers-list .supplier-monogram {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  font-size: 13px;
+  font-weight: 450;
+  letter-spacing: 0.02em;
+  color: var(--accent);
+}
+.supplier-mark > span:last-child {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  line-height: 1.5;
+}
+.suppliers .suppliers-demo-note {
+  margin-top: 10px;
+  font-size: 10px;
+  line-height: 1.4;
+  color: var(--muted);
+}
+@media (max-width: 1000px) {
+  .suppliers-list {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 23px 15px;
+  }
+}
+
+// Keep QR modules large enough to scan from another screen.
+.brochure-heading .contact-whatsapp-qr {
+  flex: 0 0 224px;
+  display: block;
+}
+.brochure-heading .contact-whatsapp-qr img {
+  display: block;
+  width: 224px;
+  min-width: 224px;
+  max-width: 224px;
+  height: auto;
+  border-radius: 8px;
+}
+@media (max-width: 420px) {
+  .brochure-heading:has(.contact-whatsapp-qr) {
+    flex-wrap: wrap;
+  }
+}
+
+.contact-whatsapp-qr span {
+  display: block;
+  margin-top: 8px;
+  text-align: center;
+  font-size: 12px;
+  color: #e6aa70;
+}
+
+.suppliers-list a.supplier-mark {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  text-decoration: none;
+}
+.suppliers-list .supplier-logo-circle {
+  display: grid;
+  place-items: center;
+  width: 112px;
+  height: 112px;
+  padding: 14px;
+  border: 1px solid #b8886570;
+  border-radius: 50%;
+  background: #fff;
+  overflow: hidden;
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+.suppliers-list .supplier-logo-circle--dark {
+  background: #252722;
+}
+.suppliers-list .supplier-logo-circle img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: 76px;
+  object-fit: contain;
+}
+.suppliers-list a:hover .supplier-logo-circle,
+.suppliers-list a:focus-visible .supplier-logo-circle {
+  border-color: var(--accent);
+  box-shadow: 0 0 20px #b8886525;
+}
+@media (max-width: 700px) {
+  .suppliers-list .supplier-logo-circle {
+    width: 96px;
+    height: 96px;
+    padding: 12px;
+  }
+  .suppliers-list .supplier-logo-circle img {
+    height: 64px;
+  }
+}
+
+// Keep the same copper hover visible against both light and dark logo backgrounds.
+.suppliers-list a:hover .supplier-logo-circle,
+.suppliers-list a:focus-visible .supplier-logo-circle {
+  border-color: #dda979;
+  box-shadow:
+    0 0 0 2px #dda97955,
+    0 0 22px #b8886540;
+}
+.suppliers-list
+  a[href="https://www.colorificioveneziano.com/"]
+  .supplier-logo-circle {
+  padding: 4px;
+}
+.suppliers-list a[href="https://www.lissonia.pt/"] .supplier-logo-circle {
+  padding: 12px;
 }
