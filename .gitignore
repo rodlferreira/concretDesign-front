@@ -5,3 +5,7 @@ test-results/
 *.tsbuildinfo
 .vercel
 .env*
+
+# Generated PDF copies and visual review previews
+output/
+tmp/
