@@ -9,36 +9,25 @@ export function AboutBrand() {
       aria-labelledby="about-title"
     >
       <div className="about-brand-panel">
-        <div
-          className="about-brand-art"
-          role="img"
-          aria-label="ConcretDesign — Revestimentos decorativos"
-        >
-          <div className="about-brand-emblem" aria-hidden="true">
-            <img
-              src="/images/brand-symbol.svg"
-              width="454"
-              height="424"
-              alt=""
-              loading="lazy"
-              decoding="async"
-            />
-          </div>
-          <div className="about-wordmark" aria-hidden="true">
-            <span className="about-wordmark-name">
-              CONCRET<span>DESIGN</span>
-            </span>
-            <span className="about-wordmark-tagline">
-              REVESTIMENTOS DECORATIVOS
-            </span>
-          </div>
-        </div>
+        <picture className="about-official-logo">
+          <img
+            src="/images/brand/official-light.webp"
+            width="1000"
+            height="860"
+            alt="ConcretDesign — Revestimentos decorativos"
+            loading="lazy"
+          />
+        </picture>
       </div>
       <div className="about-story-copy">
         <p className="eyebrow">{t("nav.about")}</p>
         <h2 id="about-title">{t("about.title")}</h2>
         <p>{t("about.text")}</p>
-        <p>{t("hero.text")}</p>
+        <p>{t("about.team")}</p>
+        <p>{t("about.partners")}</p>
+        <a className="text-link about-invitation" href="/#contactos">
+          {t("about.invitation")}
+        </a>
       </div>
     </section>
   );

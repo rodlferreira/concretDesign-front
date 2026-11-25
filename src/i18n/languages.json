@@ -2,241 +2,289 @@
   {
     "code": "pt-PT",
     "name": "Português",
-    "flag": "🇵🇹"
+    "flag": "🇵🇹",
+    "flagImage": "/flags/pt.svg"
   },
   {
     "code": "en",
     "name": "English",
-    "flag": "🇬🇧"
+    "flag": "🇬🇧",
+    "flagImage": "/flags/gb.svg"
   },
   {
     "code": "de",
     "name": "Deutsch",
-    "flag": "🇩🇪"
+    "flag": "🇩🇪",
+    "flagImage": "/flags/de.svg"
   },
   {
     "code": "es",
     "name": "Español",
-    "flag": "🇪🇸"
+    "flag": "🇪🇸",
+    "flagImage": "/flags/es.svg"
   },
   {
     "code": "fr",
     "name": "Français",
-    "flag": "🇫🇷"
+    "flag": "🇫🇷",
+    "flagImage": "/flags/fr.svg"
   },
   {
     "code": "it",
     "name": "Italiano",
-    "flag": "🇮🇹"
+    "flag": "🇮🇹",
+    "flagImage": "/flags/it.svg"
   },
   {
     "code": "nl",
     "name": "Nederlands",
-    "flag": "🇳🇱"
+    "flag": "🇳🇱",
+    "flagImage": "/flags/nl.svg"
   },
   {
     "code": "pl",
     "name": "Polski",
-    "flag": "🇵🇱"
+    "flag": "🇵🇱",
+    "flagImage": "/flags/pl.svg"
   },
   {
     "code": "sv",
     "name": "Svenska",
-    "flag": "🇸🇪"
+    "flag": "🇸🇪",
+    "flagImage": "/flags/se.svg"
   },
   {
     "code": "da",
     "name": "Dansk",
-    "flag": "🇩🇰"
+    "flag": "🇩🇰",
+    "flagImage": "/flags/dk.svg"
   },
   {
     "code": "fi",
     "name": "Suomi",
-    "flag": "🇫🇮"
+    "flag": "🇫🇮",
+    "flagImage": "/flags/fi.svg"
   },
   {
     "code": "el",
     "name": "Ελληνικά",
-    "flag": "🇬🇷"
+    "flag": "🇬🇷",
+    "flagImage": "/flags/gr.svg"
   },
   {
     "code": "cs",
     "name": "Čeština",
-    "flag": "🇨🇿"
+    "flag": "🇨🇿",
+    "flagImage": "/flags/cz.svg"
   },
   {
     "code": "sk",
     "name": "Slovenčina",
-    "flag": "🇸🇰"
+    "flag": "🇸🇰",
+    "flagImage": "/flags/sk.svg"
   },
   {
     "code": "sl",
     "name": "Slovenščina",
-    "flag": "🇸🇮"
+    "flag": "🇸🇮",
+    "flagImage": "/flags/si.svg"
   },
   {
     "code": "hr",
     "name": "Hrvatski",
-    "flag": "🇭🇷"
+    "flag": "🇭🇷",
+    "flagImage": "/flags/hr.svg"
   },
   {
     "code": "hu",
     "name": "Magyar",
-    "flag": "🇭🇺"
+    "flag": "🇭🇺",
+    "flagImage": "/flags/hu.svg"
   },
   {
     "code": "ro",
     "name": "Română",
-    "flag": "🇷🇴"
+    "flag": "🇷🇴",
+    "flagImage": "/flags/ro.svg"
   },
   {
     "code": "bg",
     "name": "Български",
-    "flag": "🇧🇬"
+    "flag": "🇧🇬",
+    "flagImage": "/flags/bg.svg"
   },
   {
     "code": "et",
     "name": "Eesti",
-    "flag": "🇪🇪"
+    "flag": "🇪🇪",
+    "flagImage": "/flags/ee.svg"
   },
   {
     "code": "lv",
     "name": "Latviešu",
-    "flag": "🇱🇻"
+    "flag": "🇱🇻",
+    "flagImage": "/flags/lv.svg"
   },
   {
     "code": "lt",
     "name": "Lietuvių",
-    "flag": "🇱🇹"
+    "flag": "🇱🇹",
+    "flagImage": "/flags/lt.svg"
   },
   {
     "code": "ga",
     "name": "Gaeilge",
-    "flag": "🇮🇪"
+    "flag": "🇮🇪",
+    "flagImage": "/flags/ie.svg"
   },
   {
     "code": "mt",
     "name": "Malti",
-    "flag": "🇲🇹"
+    "flag": "🇲🇹",
+    "flagImage": "/flags/mt.svg"
   },
   {
     "code": "no",
     "name": "Norsk",
-    "flag": "🇳🇴"
+    "flag": "🇳🇴",
+    "flagImage": "/flags/no.svg"
   },
   {
     "code": "is",
     "name": "Íslenska",
-    "flag": "🇮🇸"
+    "flag": "🇮🇸",
+    "flagImage": "/flags/is.svg"
   },
   {
     "code": "uk",
     "name": "Українська",
-    "flag": "🇺🇦"
+    "flag": "🇺🇦",
+    "flagImage": "/flags/ua.svg"
   },
   {
     "code": "ru",
     "name": "Русский",
-    "flag": "🇷🇺"
+    "flag": "🇷🇺",
+    "flagImage": "/flags/ru.svg"
   },
   {
     "code": "be",
     "name": "Беларуская",
-    "flag": "🇧🇾"
+    "flag": "🇧🇾",
+    "flagImage": "/flags/by.svg"
   },
   {
     "code": "sq",
     "name": "Shqip",
-    "flag": "🇦🇱"
+    "flag": "🇦🇱",
+    "flagImage": "/flags/al.svg"
   },
   {
     "code": "sr",
     "name": "Српски",
-    "flag": "🇷🇸"
+    "flag": "🇷🇸",
+    "flagImage": "/flags/rs.svg"
   },
   {
     "code": "bs",
     "name": "Bosanski",
-    "flag": "🇧🇦"
+    "flag": "🇧🇦",
+    "flagImage": "/flags/ba.svg"
   },
   {
     "code": "mk",
     "name": "Македонски",
-    "flag": "🇲🇰"
+    "flag": "🇲🇰",
+    "flagImage": "/flags/mk.svg"
   },
   {
     "code": "tr",
     "name": "Türkçe",
-    "flag": "🇹🇷"
+    "flag": "🇹🇷",
+    "flagImage": "/flags/tr.svg"
   },
   {
     "code": "ca",
     "name": "Català",
-    "flag": "🇦🇩"
+    "flag": "🇦🇩",
+    "flagImage": "/flags/ad.svg"
   },
   {
     "code": "eu",
     "name": "Euskara",
-    "flag": "🇪🇸"
+    "flag": "🇪🇸",
+    "flagImage": "/flags/es.svg"
   },
   {
     "code": "gl",
     "name": "Galego",
-    "flag": "🇪🇸"
+    "flag": "🇪🇸",
+    "flagImage": "/flags/es.svg"
   },
   {
     "code": "cy",
     "name": "Cymraeg",
-    "flag": "🇬🇧"
+    "flag": "🇬🇧",
+    "flagImage": "/flags/gb.svg"
   },
   {
     "code": "gd",
     "name": "Gàidhlig",
-    "flag": "🇬🇧"
+    "flag": "🇬🇧",
+    "flagImage": "/flags/gb.svg"
   },
   {
     "code": "lb",
     "name": "Lëtzebuergesch",
-    "flag": "🇱🇺"
+    "flag": "🇱🇺",
+    "flagImage": "/flags/lu.svg"
   },
   {
     "code": "hy",
     "name": "Հայերեն",
-    "flag": "🇦🇲"
+    "flag": "🇦🇲",
+    "flagImage": "/flags/am.svg"
   },
   {
     "code": "ka",
     "name": "ქართული",
-    "flag": "🇬🇪"
+    "flag": "🇬🇪",
+    "flagImage": "/flags/ge.svg"
   },
   {
     "code": "az",
     "name": "Azərbaycanca",
-    "flag": "🇦🇿"
+    "flag": "🇦🇿",
+    "flagImage": "/flags/az.svg"
   },
   {
     "code": "rm",
     "name": "Rumantsch",
-    "flag": "🇨🇭"
+    "flag": "🇨🇭",
+    "flagImage": "/flags/ch.svg"
   },
   {
     "code": "fo",
     "name": "Føroyskt",
-    "flag": "🇫🇴"
+    "flag": "🇫🇴",
+    "flagImage": "/flags/fo.svg"
   },
   {
     "code": "br",
     "name": "Brezhoneg",
-    "flag": "🇫🇷"
+    "flag": "🇫🇷",
+    "flagImage": "/flags/fr.svg"
   },
   {
     "code": "co",
     "name": "Corsu",
-    "flag": "🇫🇷"
+    "flag": "🇫🇷",
+    "flagImage": "/flags/fr.svg"
   },
   {
     "code": "oc",
     "name": "Occitan",
-    "flag": "🇫🇷"
+    "flag": "🇫🇷",
+    "flagImage": "/flags/fr.svg"
   }
 ]

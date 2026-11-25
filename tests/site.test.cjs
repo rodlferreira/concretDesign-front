@@ -944,3 +944,94 @@ test.each(["dark", "light"])(
       .screenshot({ path: `test-results/suppliers-improved-${theme}.png` });
   },
 );
+
+test.each(["dark", "light"])(
+  "November client revisions and training work in %s",
+  async (theme) => {
+    if (theme === "light") await page.getByRole("switch").click();
+    expect(await page.locator(".hero h1").textContent()).toBe(
+      "O parceiro de acabamentos em que a sua obra pode confiar.",
+    );
+    expect(
+      await page.locator(".hero-buttons .button").first().textContent(),
+    ).toContain("Fale connosco");
+    expect(
+      await page.locator(".hero-buttons .button").first().getAttribute("href"),
+    ).toBe("#contactos");
+    expect(await page.locator("#processo h2").count()).toBe(0);
+    expect(await page.locator("#processo li").count()).toBe(5);
+    expect(await page.locator("#sobre").textContent()).toContain(
+      "Trabalhamos ao lado de construtoras",
+    );
+    expect(await page.locator("#sobre").textContent()).not.toContain(
+      "Já trabalhámos",
+    );
+    expect(
+      await page.locator(".brochure-section .contact-portfolio").count(),
+    ).toBe(1);
+    expect(await page.locator("#contactos .contact-portfolio").count()).toBe(0);
+    expect(
+      await page
+        .locator("#contactos")
+        .evaluate((el) =>
+          el.lastElementChild.classList.contains("contact-people"),
+        ),
+    ).toBe(true);
+    await page
+      .getByRole("button", { name: "Escolher idioma", exact: true })
+      .click();
+    const flags = page.locator(".language-grid .language-flag");
+    expect(await flags.count()).toBe(48);
+    await flags.evaluateAll((images) =>
+      Promise.all(images.map((img) => img.decode())),
+    );
+    expect(
+      await flags.evaluateAll((images) =>
+        images.every((img) => img.naturalWidth > 0),
+      ),
+    ).toBe(true);
+    await page.keyboard.press("Escape");
+    await page
+      .locator(".hero")
+      .screenshot({ path: `test-results/nov25-hero-${theme}.png` });
+    await page
+      .locator("#sobre")
+      .screenshot({ path: `test-results/nov25-about-${theme}.png` });
+    await page
+      .locator(".brochure-section")
+      .screenshot({ path: `test-results/nov25-brochure-${theme}.png` });
+    await page
+      .locator("#contactos")
+      .screenshot({ path: `test-results/nov25-contacts-${theme}.png` });
+    await page.getByRole("link", { name: "Formações", exact: true }).click();
+    await page.waitForURL("**/formacoes");
+    expect(await page.locator(".training-page h1").textContent()).toBe(
+      "O detalhe começa no conhecimento.",
+    );
+    expect(await page.locator(".training-detail-images img").count()).toBe(3);
+    const audit = await new AxeBuilder({ page })
+      .withTags(["wcag2a", "wcag2aa", "wcag21aa", "wcag22aa"])
+      .analyze();
+    expect(audit.violations).toEqual([]);
+    await page.screenshot({
+      path: `test-results/training-${theme}.png`,
+      fullPage: true,
+    });
+    await page.setViewportSize({ width: 375, height: 812 });
+    expect(
+      await page.evaluate(
+        () => document.documentElement.scrollWidth <= innerWidth,
+      ),
+    ).toBe(true);
+    await page.screenshot({
+      path: `test-results/training-mobile-${theme}.png`,
+      fullPage: true,
+    });
+    await page.goto(baseUrl);
+    expect(
+      await page.evaluate(
+        () => document.documentElement.scrollWidth <= innerWidth,
+      ),
+    ).toBe(true);
+  },
+);

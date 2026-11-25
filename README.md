@@ -131,3 +131,7 @@ O PDF ilustrativo está em `public/documents/concretdesign-portfolio.pdf` e é o
 - `vercel.json` encaminha `/api/*` para a API e serve as rotas React diretamente.
 - Para publicar novamente, executar `npx vercel --prod` nesta pasta, depois do build e das verificações.
 - O projeto está ligado a `rodlferreira/concretDesign-front`; um push futuro para a branch de produção pode iniciar outro deploy. Incluir os ficheiros de configuração do Vercel no próximo commit.
+
+## Revisão do cliente — 23–24/11/2026
+
+A revisão local inclui o título e descrição iniciais enviados pela Emilly, CTA “Fale connosco”, faixas de serviços/fornecedores e carrossel mais compactos, texto e logótipo claro oficiais em Sobre nós, portefólio independente e contactos no final. As bandeiras são SVG locais para não depender da apresentação de emojis no sistema. `/formacoes` tem entrada própria na navegação e fotografias de detalhe pequenas; datas, programas e formadores não foram fornecidos, pelo que não se apresentam ofertas ou certificações inventadas. Os nomes dos acabamentos aguardam confirmação do Alexandre e a introdução do orçamento aguarda conteúdo definido. As novas traduções são rascunhos a rever por falantes nativos.

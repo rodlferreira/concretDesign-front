@@ -1,3 +1,4 @@
+@use "client-refinements";
 @use "sass:color";
 @use "project-gallery";
 @use "coverage-map";
@@ -2252,3 +2253,5 @@ body,
 .suppliers-list a[href="https://www.lissonia.pt/"] .supplier-logo-circle {
   padding: 12px;
 }
+
+@include client-refinements.apply;

@@ -48,7 +48,7 @@ export function Header({ overlay = false }: { overlay?: boolean }) {
     ["home", "/"],
     ["services", "/#servicos"],
     ["portfolio", "/portfolio"],
-    ["process", "/#processo"],
+    ["training", "/formacoes"],
     ["about", "/#sobre"],
     ["contact", "/#contactos"],
   ];
@@ -117,7 +117,13 @@ export function Header({ overlay = false }: { overlay?: boolean }) {
               aria-controls="languages"
               onClick={() => setLangOpen(!langOpen)}
             >
-              <span aria-hidden="true">{current.flag}</span>
+              <img
+                className="language-flag"
+                src={current.flagImage}
+                alt=""
+                width="24"
+                height="18"
+              />
               <span className="locale-code">
                 {locale.split("-")[0].toUpperCase()}
               </span>
@@ -158,7 +164,14 @@ export function Header({ overlay = false }: { overlay?: boolean }) {
                           langButton.current?.focus();
                         }}
                       >
-                        <span aria-hidden="true">{l.flag}</span>
+                        <img
+                          className="language-flag"
+                          src={l.flagImage}
+                          alt=""
+                          width="28"
+                          height="21"
+                          loading="lazy"
+                        />
                         <span>{l.name}</span>
                       </button>
                     ))}

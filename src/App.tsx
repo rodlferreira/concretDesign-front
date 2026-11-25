@@ -1,3 +1,4 @@
+import { TrainingPage } from "./components/TrainingPage";
 import { ProjectGallery } from "./components/ProjectGallery";
 import { QuotePage } from "./components/QuotePage";
 import { useEffect, useRef, useState } from "react";
@@ -10,7 +11,7 @@ import {
 import { Header } from "./components/Header";
 import { ContrastToggle } from "./components/ContrastToggle";
 import { Icon } from "./components/Icon";
-import { Contact } from "./components/Contact";
+import { Contact, BrochureSection } from "./components/Contact";
 import { Portfolio, ProjectMeta } from "./components/Portfolio";
 import { ProjectCarousel } from "./components/ProjectCarousel";
 import { Suppliers } from "./components/Suppliers";
@@ -37,8 +38,8 @@ function Home() {
           </h1>
           <p className="hero-description">{t("hero.text")}</p>
           <div className="hero-buttons">
-            <a className="button" href="/orcamento">
-              {t("quote")}
+            <a className="button" href="#contactos">
+              {t("contact.cta")}
               <ArrowRight size={19} />
             </a>
             <a className="button outline" href="/portfolio">
@@ -70,11 +71,11 @@ function Home() {
         </div>
       </section>
       <ProjectCarousel />
-      <section className="process section-pad" id="processo">
-        <div>
-          <h2>{t("process.title")}</h2>
-          <p>{t("process.text")}</p>
-        </div>
+      <section
+        className="process section-pad"
+        id="processo"
+        aria-label={t("process.title")}
+      >
         <ol>
           {["visit", "quote", "work", "delivery", "warranty"].map(
             (step, index) => (
@@ -95,6 +96,7 @@ function Home() {
       <CoverageMap />
       <Suppliers />
       <AboutBrand />
+      <BrochureSection />
       <Contact />
     </>
   );
@@ -246,6 +248,8 @@ export default function App() {
           <Detail />
         ) : path === "/orcamento" ? (
           <QuotePage />
+        ) : path === "/formacoes" ? (
+          <TrainingPage />
         ) : path === "/privacy" ? (
           <Privacy />
         ) : (

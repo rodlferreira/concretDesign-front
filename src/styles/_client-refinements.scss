@@ -1,0 +1,239 @@
+@mixin apply {
+  // Client review, 23–24 November: preserve the established palette.
+  .services.section-pad {
+    padding-block: 13px;
+    min-height: 0;
+  }
+  .service-list {
+    max-width: 1380px;
+  }
+  .service > svg {
+    width: 23px;
+    height: 23px;
+    margin-bottom: 5px;
+  }
+  .service h2 {
+    margin-bottom: 4px;
+  }
+  .service p {
+    font-size: 12px;
+    line-height: 1.4;
+    color: var(--text);
+  }
+  .carousel-slide {
+    height: clamp(330px, 33vw, 500px);
+  }
+  .suppliers.section-pad {
+    padding-block: 20px;
+  }
+  .suppliers-list .supplier-logo-circle {
+    width: 96px;
+    height: 96px;
+  }
+  .suppliers-list .supplier-logo-circle img {
+    height: 64px;
+  }
+  .process.section-pad {
+    display: block;
+  }
+  .process ol {
+    width: 100%;
+    border-left: 0;
+    padding-left: 0;
+  }
+  .about-brand-panel {
+    background: #000;
+  }
+  .about-official-logo {
+    display: block;
+    width: min(90%, 420px);
+  }
+  .about-official-logo img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .about-story-copy {
+    align-self: center;
+  }
+  .about-story-copy .about-invitation {
+    font-size: 14px;
+    line-height: 1.7;
+    margin-top: 6px;
+  }
+  .language-flag {
+    display: inline-block;
+    object-fit: cover;
+    border-radius: 2px;
+    box-shadow: 0 0 0 1px #ffffff25;
+  }
+  .language-grid button .language-flag {
+    width: 28px;
+    height: 21px;
+    margin: 0 auto 5px;
+  }
+  .brochure-section {
+    background: var(--paper);
+    border-bottom: 1px solid var(--line);
+    padding-block: 40px;
+  }
+  .brochure-section .contact-portfolio {
+    max-width: 1100px;
+    margin-inline: auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+    gap: 18px 48px;
+    align-items: center;
+  }
+  .brochure-section .brochure-heading {
+    grid-row: 1 / span 4;
+  }
+  .brochure-section .contact-portfolio > p {
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 0;
+  }
+  .brochure-section .contact-portfolio .text-link {
+    margin: 0;
+  }
+  .brochure-section .contact-whatsapp-qr span {
+    color: var(--accent);
+  }
+  .brochure-section .contact-email {
+    margin: 0;
+  }
+  .contact.section-pad {
+    display: block;
+  }
+  .contact .contact-form {
+    border: 0;
+    padding: 0 0 32px;
+    max-width: 100%;
+  }
+  .contact .contact-form > p {
+    max-width: 540px;
+  }
+  .contact .contact-form .button {
+    margin-top: 16px;
+  }
+  .contact .contact-people {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 40px;
+    border-left: 0;
+    border-top: 1px solid var(--line);
+    padding: 30px 0 0;
+  }
+  .contact .contact-people > .whatsapp-icon {
+    grid-column: 1/-1;
+  }
+  .contact .contact-people > h2,
+  .contact .contact-people > p {
+    grid-column: 1/-1;
+  }
+  .contact .contact-people address {
+    margin: 8px 0;
+  }
+  .contact .contact-people > .whatsapp-button {
+    justify-self: start;
+    grid-column: 1/-1;
+    margin-top: 8px;
+  }
+  .training-page {
+    min-height: 75dvh;
+    background: var(--bg);
+    padding-block: 38px 70px;
+  }
+  .training-layout {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 70px;
+    align-items: center;
+    max-width: 1300px;
+    margin: 70px auto 20px;
+  }
+  .training-copy h1 {
+    font-size: clamp(34px, 4vw, 58px);
+    line-height: 1.08;
+    font-weight: 450;
+    letter-spacing: -0.035em;
+    max-width: 620px;
+    margin: 20px 0 28px;
+  }
+  .training-copy > p:not(.eyebrow) {
+    max-width: 560px;
+    font-size: 15px;
+    line-height: 1.7;
+    margin-bottom: 18px;
+  }
+  .training-copy .button {
+    margin: 12px 0 24px;
+  }
+  .training-copy .training-pending {
+    color: var(--muted);
+    font-size: 12px;
+  }
+  .training-details {
+    border-left: 1px solid var(--line);
+    padding-left: 32px;
+  }
+  .training-detail-images {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+  .training-detail-images figure {
+    margin: 0;
+    flex: 1;
+    min-width: 0;
+  }
+  .training-detail-images img {
+    width: 100%;
+    max-width: 150px;
+    height: 120px;
+    object-fit: cover;
+  }
+  .training-details > p {
+    font-size: 12px;
+    margin-top: 20px;
+  }
+  .training-details .muted {
+    font-size: 10px;
+    line-height: 1.6;
+  }
+  @media (max-width: 760px) {
+    .service p {
+      font-size: 11px;
+    }
+    .carousel-slide {
+      height: 360px;
+    }
+    .brochure-section .contact-portfolio {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 20px;
+    }
+    .brochure-section .brochure-heading {
+      flex-wrap: wrap;
+    }
+    .contact .contact-people {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .training-layout {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      margin-top: 35px;
+      align-items: stretch;
+    }
+    .training-details {
+      border-left: 0;
+      border-top: 1px solid var(--line);
+      padding: 24px 0 0;
+    }
+    .training-detail-images img {
+      height: 95px;
+    }
+  }
+}
